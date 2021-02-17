@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+    {% for blog in blogs %}
+
+        <div class="album py-5 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="card mb-4 box-shadow ">
+                        <div class="card-body">
+                            <p class="card-text">{{ blog.tekst }}</p>
+                            <p class="card-text">id:{{ blog.id }}</p>
+                            <p class="card-text">Date:{{ blog.moment ? blog.moment|date('Y-m-d H:i:s T') : '' }} </p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="btn-group">
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a
+                                                href="{{ path('blog_show', {'id': blog.id}) }}">show</a></button>
+                                    <button type="button" class="btn btn-sm btn-outline-secondary"><a
+                                                href="{{ path('blog_edit', {'id': blog.id}) }}">edit</a></button>
+                                </div>
+                                <small class="text-muted">9 mins</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    {% endfor %}
+    {# <a href="{{ path('blog_new') }}">Create new</a> #}
+{% endblock %}
