@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Blog;
 use App\Form\BlogType;
 use App\Repository\BlogRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,6 +28,8 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/new", name="blog_new", methods={"GET","POST"})
+     * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
+
      */
     public function new(Request $request): Response
     {
@@ -61,6 +64,7 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/{id}/edit", name="blog_edit", methods={"GET","POST"})
+     *  * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      */
     public function edit(Request $request, Blog $blog): Response
     {
@@ -82,6 +86,7 @@ class BlogController extends AbstractController
 
     /**
      * @Route("/{id}", name="blog_delete", methods={"DELETE"})
+     *  * @Security("is_granted('IS_AUTHENTICATED_FULLY')")
      */
     public function delete(Request $request, Blog $blog): Response
     {
